@@ -180,7 +180,23 @@ ReactDOM.render(
   document.getElementById('root')
 );*/
 
+// 8, List and keys
 
+                    // pass an array of numbers
+const NumberList  = (props) =>{
+  const numbers = props.numbers;
+  const listNumbers = numbers.map((num) => <li
+    key={num.toString()}
+  >{num}</li>)
+
+  return (
+    <ul>{listNumbers}</ul>
+  );
+}
 //export default Mailbox;
-export default LoginControl;
+//export default LoginControl;
+//export default listItems;
+
+export default NumberList;
+
 
