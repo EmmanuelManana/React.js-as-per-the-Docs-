@@ -50,38 +50,137 @@ const App = () =>(
   depending on its current state. 
   It will also render a <Greeting /> from the previous example:*/
 
-  class LoginControl extends React.Component{
+  function LogoutButton(props){
+    return (
+    <button onClick={props.onClick}>
+      logout
+    </button>)
+  }
 
-    constructor(props){
-      super(props);
-
-      this.state = {isLoggedIn : true};
-
-      //handle states "onClick"
-
-      render(){
-        //fetch the current state
-        const isLoggedIn = this.state.isLoggedIn;
-        //let button
-        let button;
-        
-        //conditions, pick button
-        if (isLoggedIn){
-          
-        }else{
-
-        }
-      }
-
-      return (
-        <div>
-          <Greeting isLoggedIn={isLoggedIn} />
-          {button}
-        </div>
-      );
-    }
+  function LoginButton(props){
+    //fire the property onClick
+    return (
+    <button onClick={props.onClick}>
+      login
+    </button>)
   }
 
 
-export default Greeting;
+
+  class LoginControl extends React.Component{
+
+      constructor(props){
+        super(props);
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+        this.state = {isLoggedIn : false};
+      }
+
+      //handle states "onClick"
+      handleLoginClick(){
+        this.setState({isLoggedIn : false});
+      }
+
+      handleLogoutClick(){
+        this.setState({isLoggedIn: true})
+      }
+
+      render(){
+
+          //fetch the current state
+          const isLoggedIn = this.state.isLoggedIn;
+          //let button
+          let button;
+          
+          //conditions, pick button
+          if (isLoggedIn){
+            button = <LoginButton onClick={this.handleLoginClick}/>
+          }else{
+            button = <LogoutButton onClick={this.handleLogoutClick}/>
+          }
+      
+
+          return (
+
+            <div>
+                <Greeting isLoggedIn={isLoggedIn}/>
+                {button}
+                <div>
+                  The user is <b>{ !isLoggedIn ? 'currently':'not' }</b> logged in.
+                </div>
+            </div>
+          )
+    }
+}
+
+//inline if with Logical && Operator
+      /*You may embed any expressions in JSX by 
+      wrapping them in curly braces. This includes the
+       JavaScript logical && operator. 
+      It can be handy for conditionally including an element:*/
+const Mailbox = (props) =>{
+  const unreadMessages = props.unreadMessages;
+  return (
+    <div>
+      <h1>hello world</h1>
+      { 
+        unreadMessages.length > 0 && 
+        <h2>
+          you have {unreadMessages.length} unread messages.
+        </h2>
+      }
+        <h1> 
+          {unreadMessages}
+        </h1>
+    </div>
+  )
+}
+
+/*
+
+function WarningBanner(props) {
+  if (!props.warn) {
+    return null;
+  }
+
+  return (
+    <div className="warning">
+      Warning!
+    </div>
+  );
+}
+
+class Page extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showWarning: true};
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
+
+  handleToggleClick() {
+    this.setState(state => ({
+      showWarning: !state.showWarning
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <WarningBanner warn={this.state.showWarning} />
+        <button onClick={this.handleToggleClick}>
+          {this.state.showWarning ? 'Hide' : 'Show'}
+        </button>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Page />,
+  document.getElementById('root')
+);*/
+
+
+//export default Mailbox;
+export default LoginControl;
 
