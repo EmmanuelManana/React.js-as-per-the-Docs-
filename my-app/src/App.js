@@ -193,10 +193,57 @@ const NumberList  = (props) =>{
     <ul>{listNumbers}</ul>
   );
 }
+
+// 9, forms 
+/* controlled components,(functions that handles the form)
+ submission and has access to the submitted data*/
+
+//******* Controlled_Components_ */
+// handling single input
+class NameForm extends React.Component{
+
+  constructor(props){
+    super(props);
+    //set state
+    this.state = {value: ''}
+    //bind to handle callbacks
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  //update State
+  handleChange(event){
+    //update to a new value( target update the state object)
+    this.setState({value : event.target.value})
+  }
+
+  handleSubmit(event){
+
+    //prevent unwated, nonsense
+    alert('A name was submitted: '+ this.state.value);
+    event.preventDefault();
+  }
+
+  render(){
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          name:
+          <input type={"text"} value={this.state.value}
+          onChange={this.handleChange}/>
+        </label>
+        <input type={"submit"} value={"submit"}/> 
+      </form>
+    )
+  }
+}
+
+
 //export default Mailbox;
 //export default LoginControl;
 //export default listItems;
-
-export default NumberList;
+//export default NumberList;
+export default NameForm;
 
 

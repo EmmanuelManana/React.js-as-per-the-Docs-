@@ -7,6 +7,7 @@ import Greeting from './App';
 import LoginControl from './App';
 import Mailbox from './App';
 import NumberList from './App';
+import NameForm from './App';
 
 
 
@@ -24,7 +25,12 @@ const listItems = numbers.map((numbers) => <li>{numbers * 2}</li>);
 
  const  nums = [1, 3, 6, 10];
 
- ReactDOM.render(
+ /*ReactDOM.render(
      <NumberList numbers={nums}/>
      , document.getElementById('root')
- )
+ )*/
+
+ ReactDOM.render(
+    <NameForm />
+    , document.getElementById('root')
+)
